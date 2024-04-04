@@ -4,7 +4,7 @@ Fecha:
 
 **Participantes**:
 
-- [Nombre] < [correo] >
+- [Nombre] <[correo]>
 
 ## Descripción del Problema
 
