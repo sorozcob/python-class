@@ -1,13 +1,14 @@
 # Nombre del Proyecto
 
-Fecha: 
+Fecha: count_atgc
 
 **Participantes**:
 
-- [Nombre] < [correo] >
+- [Santiago Orozco] < [santiago@lcg.unam.mx] >
 
 ## Descripción del Problema
 
+Cuenta las ocurrencias de los símbolos 'A', 'C', 'G' y 'T' de una cadena de DNA que lee a través de un archivo
 
 
 
@@ -31,7 +32,8 @@ Requisitos no funcionales
 
 
 ```
-Algoritmo
+1. Abre el archivo dna.txt en modo lectura y lee su contenido
+2. Elimina los saltos de línea 
 ```
 
 El formato de los datos de entrada y de salida.
