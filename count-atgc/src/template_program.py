@@ -1,14 +1,14 @@
 '''
-NAME
+NAME: count_atgc
        
 
-VERSION
+VERSION: 
         
 
-AUTHOR
+AUTHOR: Santiago Orozco
         
 
-DESCRIPTION
+DESCRIPTION: Es un programa que al darle un archivo de secuencia de nucleótidos, regresa la cuenta del número de A, T, G, y C
         
 
 CATEGORY
@@ -16,10 +16,10 @@ CATEGORY
 
 USAGE
 
-    % python programName
+    % python count:atgc
     
 
-ARGUMENTS
+ARGUMENTS: 
 
 
 METHOD
@@ -70,5 +70,19 @@ SEE ALSO
 
 # step 3.
 
+def contar_letras(archivo):
+    conteo = {'a': 0, 't': 0, 'c': 0, 'g': 0}
+
+    with open(archivo, 'r') as f:
+        for linea in f:
+            for caracter in linea.lower():
+                if caracter in conteo:
+                    conteo[caracter] += 1
+
+    return conteo
+
+archivo = 'nombre_del_archivo.txt'  # Reemplaza con el nombre de tu archivo
+resultado = contar_letras(archivo)
+print(resultado)
 
 
