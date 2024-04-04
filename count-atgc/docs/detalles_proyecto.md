@@ -14,29 +14,34 @@ Cuenta las ocurrencias de los símbolos 'A', 'C', 'G' y 'T' de una cadena de DNA
 
 ## Especificación de Requisitos
 
+
 Requisitos funcionales
 
-- Requisito 1
-- Requisito 2
-- Requisito 3
+- Leer números de un archivo dado en formato string.
+- Cuenta cuantas veces aparece la letra A, T, G y C en el archivo.
+- Imprime el número de repeticiones de cada nucleótido
 
 Requisitos no funcionales
 
-- Requisito 1
-- Requisito 2
-- Requisito 3
+- El script deberá estar escrito en Python.
+- El tiempo de respuesta debe ser rápido, incluso con archivos de gran tamaño.
 
 
 ## Análisis y Diseño
 
 
+```
+Función principal:
+    Inicializar los contadores para cada letra
+    Abrir el archivo en modo lectura 
+    Iterar sobre cada línea del archivo
+    Convertir la línea a minúsculas para contar sin distinción de mayúsculas/minúsculas
+    Iterar sobre cada caracter de la línea
+    Incrementar el contador correspondiente si el caracter es una de las letras a contar
+    Imprimir los resultados de los contadores
 
 ```
-1. Abre el archivo dna.txt en modo lectura y lee su contenido
-2. Elimina los saltos de línea 
-```
 
-El formato de los datos de entrada y de salida.
 
 
 #### Caso de uso: 
@@ -49,24 +54,24 @@ El formato de los datos de entrada y de salida.
                  | 1. Proporciona archivo o datos de entrada
                  v
          +-------+-------+
-         |               |
-         |               |
-         |               |
-         |               |
+         |  Contador de  |
+         |  repeticiones |
+         |  para cada    |
+         |  nucleótido   |
          +---------------+
 ```
 
 - **Actor**: Usuario
-- **Descripción**: Explicar la dinámica del programa
+- **Descripción**: El usuario proporciona un archivo de entrada con una secuencia de nucleótidos. El programa cuenta el número de repeticiones de cada nucleótido.
 - **Flujo principal**:
 
-	1. 
-	2. 
-	3. 
+	1. Abre y lee el archivo llamado "archivo.txt" 
+	2. Se recorre el arcivo línea por línea
+	3. Se suma 1 al contador dependiendo del símbolo que aparece
+        4. Imprime el número de repeticines por cada nucleótido
 	
 - **Flujos alternativos**: [Casos que salen del uso común del programa]
-	- 
-		1. 
-	- 
-		1.      
+	- Si el archivo se llama de otra manera que no sea "archivo.txt" 
+		1. El programa no se ejecuta
+
         
