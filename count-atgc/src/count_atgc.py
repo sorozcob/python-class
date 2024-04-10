@@ -36,9 +36,26 @@ SEE ALSO
 '''
 
 # ===========================================================================
+# =                           libreria
+# ===========================================================================
+
+import argparse
+import argparse
+
+# ===========================================================================
 # =                            main
 # ===========================================================================
 
+# Aceptar argumentos desde línea de comandos
+
+parser = argparse.ArgumentParser (description = "Lee archivo de entrada")
+# Argumentos posicionales
+parser.add_argument("input_file", type=str, help ="Nombre del archivo con la secuencia de nucleótidos")
+# Argumentos opcionales
+parser.add_argument("-n", "-nucleotides", type=char, default="a","t", "g", "c", help="El (los) nucleótido(s) específicos que se quieren imprimir")
+
+#  Inicializar args
+args = parser.parse_args()
 
 # Inicializamos los contadores para cada letra
 contador_a = 0
@@ -47,7 +64,7 @@ contador_c = 0
 contador_g = 0
 
 # Abrimos el archivo en modo lectura
-with open('archivo.txt', 'r') as f:
+with open('args.input_file', 'r') as f:
     # Iteramos sobre cada línea del archivo
     for linea in f:
         # Convertimos la línea a minúsculas para contar sin distinción de mayúsculas/minúsculas
