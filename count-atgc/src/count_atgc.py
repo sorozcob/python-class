@@ -52,7 +52,7 @@ parser = argparse.ArgumentParser (description = "Lee archivo de entrada")
 # Argumentos posicionales
 parser.add_argument("input_file", type=str, help ="Nombre del archivo con la secuencia de nucleótidos")
 # Argumentos opcionales
-parser.add_argument("-n", "-nucleotides", type=char, default="a","t", "g", "c", help="El (los) nucleótido(s) específicos que se quieren imprimir")
+parser.add_argument("-n", "-nucleotides", type=char, choices=["a","t", "g", "c"], help="El (los) nucleótido(s) específico(s) que se quieren imprimir")
 
 #  Inicializar args
 args = parser.parse_args()
@@ -82,7 +82,16 @@ with open('args.input_file', 'r') as f:
                 contador_g += 1
 
 # Imprimimos los resultados de los contadores
-print(f'Letra A: {contador_a}')
-print(f'Letra T: {contador_t}')
-print(f'Letra C: {contador_c}')
-print(f'Letra G: {contador_g}')
+if args.nucleotides == "a":
+       print(f'Letra A: {contador_a}')
+if args.nucleotides == "t":
+       print(f'Letra T: {contador_t}')
+if args.nucleotides == "c": 
+       print(f'Letra C: {contador_c}')
+if arg.nucleotides == "g":
+       print(f'Letra G: {contador_g}')
+else 
+       print(f'Letra A: {contador_a}')
+       print(f'Letra T: {contador_t}')
+       print(f'Letra C: {contador_c}')
+       print(f'Letra G: {contador_g}')
