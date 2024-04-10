@@ -52,7 +52,7 @@ parser = argparse.ArgumentParser (description = "Lee archivo de entrada")
 # Argumentos posicionales
 parser.add_argument("input_file", type=str, help ="Nombre del archivo con la secuencia de nucleótidos")
 # Argumentos opcionales
-parser.add_argument("-n", "-nucleotides", type=char, choices=["a","t", "g", "c"], help="El (los) nucleótido(s) específico(s) que se quieren imprimir")
+parser.add_argument("-n", "--nucleotides", type=char, choices=["a","t", "g", "c"], help="El (los) nucleotido(s) especifico(s) que se quieren imprimir")
 
 #  Inicializar args
 args = parser.parse_args()
