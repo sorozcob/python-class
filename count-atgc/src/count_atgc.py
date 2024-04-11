@@ -52,7 +52,7 @@ parser = argparse.ArgumentParser (description = "Lee archivo de entrada")
 # Argumentos posicionales
 parser.add_argument("input_file", type=str, help ="Nombre del archivo con la secuencia de nucleótidos")
 # Argumentos opcionales
-parser.add_argument("-n", "-nucleotides", type=char, default="a","t", "g", "c", help="El (los) nucleótido(s) específicos que se quieren imprimir")
+parser.add_argument("-n", "--nucleotides", type=char, choices=["a","t", "g", "c"], help="El (los) nucleotido(s) especifico(s) que se quieren imprimir")
 
 #  Inicializar args
 args = parser.parse_args()
@@ -82,7 +82,24 @@ with open('args.input_file', 'r') as f:
                 contador_g += 1
 
 # Imprimimos los resultados de los contadores
-print(f'Letra A: {contador_a}')
-print(f'Letra T: {contador_t}')
-print(f'Letra C: {contador_c}')
-print(f'Letra G: {contador_g}')
+if args.nucleotides == "a":
+       print(f'Letra A: {contador_a}')
+if args.nucleotides == "t":
+       print(f'Letra T: {contador_t}')
+if args.nucleotides == "c": 
+       print(f'Letra C: {contador_c}')
+if arg.nucleotides == "g":
+       print(f'Letra G: {contador_g}')
+else 
+       print(f'Letra A: {contador_a}')
+       print(f'Letra T: {contador_t}')
+       print(f'Letra C: {contador_c}')
+       print(f'Letra G: {contador_g}')
+
+# Te dejo una versión de código más simple, aún no hemos visto métodos en clase, pero son una cosa maravillosa que permite que puedas hacer un monton de cosas 
+# En este caso usé el método count:
+with open(archivo, 'r') as f:
+    DNA = f.read()
+# Obtenemos la frecuencia de aparicion de cad aletra.
+print(f"El total por base es: A:{ADN.count('A')} C:{ADN.count('C')} T:{ADN.count('T')} G:{ADN.count('G')}")
+
