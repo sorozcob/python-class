@@ -1,6 +1,6 @@
-# Nombre del Proyecto
+# Count ATGC
 
-Fecha: count_atgc
+Fecha: 04/04/2024
 
 **Participantes**:
 
