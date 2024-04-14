@@ -2,7 +2,7 @@
 NAME: count_atgc
        
 
-VERSION: 1
+VERSION: 2
         
 
 AUTHOR: Santiago Orozco
@@ -16,7 +16,11 @@ CATEGORY: Herramienta que cuenta los nucleótidos de una secuencia
 
 USAGE
 
-    % python count_atgc.py
+    % python count-atgc.py
+    % python count-atgc.py -n A
+    % python count-atgc.py -n T
+    % python count-atgc.py -n G
+    % python count-atgc.py -n C
     
 
 ARGUMENTS: archivo.txt: Archivo que contiene una secuencia de nucleótidos A, T, G y C
@@ -50,9 +54,9 @@ import argparse
 
 parser = argparse.ArgumentParser (description = "Lee archivo de entrada")
 # Argumentos posicionales
-parser.add_argument("input_file", type=str, help ="Nombre del archivo con la secuencia de nucleótidos")
+parser.add_argument("-i","--input_file", type=str, help ="Nombre del archivo con la secuencia de nucleótidos")
 # Argumentos opcionales
-parser.add_argument("-n", "--nucleotides", type=char, choices=["a","t", "g", "c"], help="El (los) nucleotido(s) especifico(s) que se quieren imprimir")
+parser.add_argument("-n", "--nucleotides", type=str, choices=["a","t", "g", "c"], help="El (los) nucleotido(s) especifico(s) que se quieren imprimir")
 
 #  Inicializar args
 args = parser.parse_args()
@@ -64,7 +68,7 @@ contador_c = 0
 contador_g = 0
 
 # Abrimos el archivo en modo lectura
-with open('args.input_file', 'r') as f:
+with open(args.input_file, 'r') as f:
     # Iteramos sobre cada línea del archivo
     for linea in f:
         # Convertimos la línea a minúsculas para contar sin distinción de mayúsculas/minúsculas
@@ -88,9 +92,9 @@ if args.nucleotides == "t":
        print(f'Letra T: {contador_t}')
 if args.nucleotides == "c": 
        print(f'Letra C: {contador_c}')
-if arg.nucleotides == "g":
+if args.nucleotides == "g":
        print(f'Letra G: {contador_g}')
-else 
+else: 
        print(f'Letra A: {contador_a}')
        print(f'Letra T: {contador_t}')
        print(f'Letra C: {contador_c}')
@@ -98,8 +102,8 @@ else
 
 # Te dejo una versión de código más simple, aún no hemos visto métodos en clase, pero son una cosa maravillosa que permite que puedas hacer un monton de cosas 
 # En este caso usé el método count:
-with open(archivo, 'r') as f:
-    DNA = f.read()
+with open(args.input_file, 'r') as f:
+    ADN = f.read().upper()
 # Obtenemos la frecuencia de aparicion de cad aletra.
 print(f"El total por base es: A:{ADN.count('A')} C:{ADN.count('C')} T:{ADN.count('T')} G:{ADN.count('G')}")
 
