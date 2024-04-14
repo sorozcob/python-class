@@ -15,20 +15,29 @@ Mensaje de error
 ### Caso de prueba 2: Input Vacío
 
 - Descripción: Sí el archivo existe, pero es un archivo vacío
-- Datos de entrada: 
-- Resultado esperado: 
+- Datos de entrada: El archivo está vacío
+```
+python count-atcg.py empty_file.txt
+```
+- Resultado esperado: Mensaje de error
 
 
 ### Caso de prueba 3: Input con caracteres inválidos
 
-- Descripción: 
-- Datos de entrada: 
-- Resultado esperado: 
+- Descripción: Archivo con caracteres inválidos, diferentes a A,T,G,C en minúsculas o mayúsculas
+- Datos de entrada: Archivo erroneo
+```
+python count-atgc.py invalid_file.txt
+```
+- Resultado esperado: Mensaje de error
 
-### Caso de prueba 4: Argumentos de -n diferentes de A, T, G, C
+### Caso de prueba 4: * Argumentos de -n diferentes de A, T, G, C
 
-- Descripción: 
+- Descripción: Argumentos inválidos de -n
 - Datos de entrada: 
-- Resultado esperado: 
+```
+python count-atgc file.txt -n 
+```
+- Resultado esperado: Mensaje de error
 
 
