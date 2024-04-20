@@ -2,7 +2,7 @@
 NAME: count_atgc
        
 
-VERSION: 2
+VERSION: 3
         
 
 AUTHOR: Santiago Orozco
@@ -57,27 +57,69 @@ SEE ALSO
 # ===========================================================================
 
 import argparse
+import os #Módulo estándar que proporciona una interfaz para interactuar con el sistema operativo en el que se está ejecutando 
+import sys
+
+# ===========================================================================
+# =                            Command Line Options
+# ===========================================================================
+
+# Aceptar argumentos desde línea de comandos
+parser = argparse.ArgumentParser (description = "Lee archivo de entrada")
+
+# Argumentos posicionales
+parser.add_argument("input_file", 
+                    type=str, 
+                    help ="Nombre del archivo con la secuencia de nucleótidos")
+
+# Argumentos opcionales
+parser.add_argument("-n", "--nucleotides", 
+                    type=str, 
+                    default = "atgc", 
+                    choices=["a","t", "g", "c", "A", "T", "G", "C"], 
+                    help="El (los) nucleotido(s) especifico(s) que se quieren imprimir")
+
+#  Inicializar args
+args = parser.parse_args()
+
+
+# ===========================================================================
+# =                            functions
+# ===========================================================================
+
+
 
 # ===========================================================================
 # =                            main
 # ===========================================================================
 
-# Aceptar argumentos desde línea de comandos
-
-parser = argparse.ArgumentParser (description = "Lee archivo de entrada")
-# Argumentos posicionales
-parser.add_argument("input_file", type=str, help ="Nombre del archivo con la secuencia de nucleótidos")
-# Argumentos opcionales
-parser.add_argument("-n", "--nucleotides", type=str, choices=["A","T", "G", "C"], help="El (los) nucleotido(s) especifico(s) que se quieren imprimir")
-
-#  Inicializar args
-args = parser.parse_args()
-
 # En este caso usé el método count:
-with open(args.input_file, 'r') as f:
-    ADN = f.read().upper
+try:
+    with open(args.input_file, 'r') as f:
+        ADN = f.read().upper()
+except IOError:
+    print("No se encontró el archivo :'(")
+if os.path.getsize(args.input_file) == 0: # Comprobar si el archivo está vacío, si cierto, cerrar el programa
+    #path es un submódulo que proporciona funciones para manipular rutas de archivos y directorios
+    #getsize es una función que devuelve el tamaño en bytes de un archivo
+    print("El archivo está vacío")
+    exit()
+if ADN != "A" and ADN != "a" and ADN != "T" and ADN != "t" and ADN != "G" and ADN != "g" and ADN != "C" and ADN != "c":
+    cam = ADN
+    print("Sequence contains" + cam + ", it is invalid character")
+    exit()
+
 # Obtenemos la frecuencia de aparicion de cada letra.
-if args.nucleotides == "A":
-    print("")
-print(f"El total por base es: A:{ADN.count('A')} T:{ADN.count('T')} G:{ADN.count('G')} C:{ADN.count('C')}")
+
+if args.nucleotides == "A" or args.nucleotides == "a":
+    print(f"El total de As es: {ADN.count('A')}")
+if args.nucleotides == "T" or args.nucleotides == "t":
+    print(f"El total de Ts es: {ADN.count('T')}")
+if args.nucleotides == "G" or args.nucleotides == "g":
+    print(f"El total de Gs es: {ADN.count('G')}")
+if args.nucleotides == "C" or args.nucleotides == "c":
+    print(f"El total de Cs es: {ADN.count('C')}")
+
+if args.nucleotides == "atgc" :
+    print(f"El total por base es: A:{ADN.count('A')} T:{ADN.count('T')} G:{ADN.count('G')} C:{ADN.count('C')}")
 
