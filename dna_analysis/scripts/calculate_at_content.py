@@ -15,11 +15,11 @@ Argumentos:
 """
 
 import argparse
-from dna_analysis.operations.codon_frequency import calculate_codon_frequency
+from dna_analysis.operations.at_content import calculate_at_content
 from dna_analysis.utils.file_io import read_dna_sequence
 
 def main():
-    parser = argparse.ArgumentParser(description="Calcula la frecuencia de los codones en una secuencia de ADN.")
+    parser = argparse.ArgumentParser(description="Calcula el contenido de AT en una secuencia de ADN.")
     parser.add_argument("file", type=str, help="Archivo de ADN del cual leer la secuencia.")
     parser.add_argument("-n", "--normalize", action="store_true", help="Normaliza el contenido de AT excluyendo 'N's del cálculo.")
 
