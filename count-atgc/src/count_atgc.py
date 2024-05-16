@@ -58,7 +58,7 @@ SEE ALSO
 
 import argparse
 import os #Módulo estándar que proporciona una interfaz para interactuar con el sistema operativo en el que se está ejecutando 
-import sys
+
 
 # ===========================================================================
 # =                            Command Line Options
@@ -87,39 +87,62 @@ args = parser.parse_args()
 # =                            functions
 # ===========================================================================
 
+def errortesting (file):
+    # En este caso usé el método count:
+    try:
+        with open(file, 'r') as f:
+            ADN = f.read().upper()
+    except IOError:
+        print("No se encontró el archivo :'(")
+    if os.path.getsize(file) == 0: # Comprobar si el archivo está vacío, si cierto, cerrar el programa
+        #path es un submódulo que proporciona funciones para manipular rutas de archivos y directorios
+        #getsize es una función que devuelve el tamaño en bytes de un archivo
+        print("El archivo está vacío")
+        exit()
+    '''
+    if ADN != "A" and ADN != "a" and ADN != "T" and ADN != "t" and ADN != "G" and ADN != "g" and ADN != "C" and ADN != "c" and ADN != " " and ADN != "\n":
+        print("Sequence contains")
+        for caracter in ADN:
+                if caracter != "A" and caracter != "a" and caracter != "T" and caracter != "t" and caracter != "G" and caracter != "g" and caracter != "C" and caracter != "c" and ADN != " " and ADN != "\n":
+                    print(caracter) 
+        print(", is (are) invalid character(s)")
+        exit()
+    '''
+    return(ADN)
+
+def frecuencia (ADN, nucleotido):
+    # Obtenemos la frecuencia de aparicion de cada letra.
+    if nucleotido == "A" or nucleotido == "a":
+        print(f"El total de As es: {ADN.count('A')}")
+    if nucleotido == "T" or nucleotido == "t":
+        print(f"El total de Ts es: {ADN.count('T')}")
+    if nucleotido == "G" or nucleotido == "g":
+        print(f"El total de Gs es: {ADN.count('G')}")
+    if nucleotido == "C" or nucleotido == "c":
+        print(f"El total de Cs es: {ADN.count('C')}")
 
 
 # ===========================================================================
 # =                            main
 # ===========================================================================
 
-# En este caso usé el método count:
-try:
-    with open(args.input_file, 'r') as f:
-        ADN = f.read().upper()
-except IOError:
-    print("No se encontró el archivo :'(")
-if os.path.getsize(args.input_file) == 0: # Comprobar si el archivo está vacío, si cierto, cerrar el programa
-    #path es un submódulo que proporciona funciones para manipular rutas de archivos y directorios
-    #getsize es una función que devuelve el tamaño en bytes de un archivo
-    print("El archivo está vacío")
-    exit()
-if ADN != "A" and ADN != "a" and ADN != "T" and ADN != "t" and ADN != "G" and ADN != "g" and ADN != "C" and ADN != "c":
-    cam = ADN
-    print("Sequence contains" + cam + ", it is invalid character")
-    exit()
-
-# Obtenemos la frecuencia de aparicion de cada letra.
-
-if args.nucleotides == "A" or args.nucleotides == "a":
-    print(f"El total de As es: {ADN.count('A')}")
-if args.nucleotides == "T" or args.nucleotides == "t":
-    print(f"El total de Ts es: {ADN.count('T')}")
-if args.nucleotides == "G" or args.nucleotides == "g":
-    print(f"El total de Gs es: {ADN.count('G')}")
-if args.nucleotides == "C" or args.nucleotides == "c":
-    print(f"El total de Cs es: {ADN.count('C')}")
-
+ADN = errortesting(args.input_file)
+frecuencia(ADN, args.nucleotides)
 if args.nucleotides == "atgc" :
     print(f"El total por base es: A:{ADN.count('A')} T:{ADN.count('T')} G:{ADN.count('G')} C:{ADN.count('C')}")
 
+
+'''
+###
+from itertools import combinations
+
+cadena = "ABC"
+longitud_combinacion = 2
+
+# Obtener todas las combinaciones de longitud 2 de los caracteres de la cadena
+combinaciones = list(combinations(cadena, longitud_combinacion))
+
+# Imprimir las combinaciones obtenidas
+for combinacion in combinaciones:
+     print(''.join(combinacion))
+'''
